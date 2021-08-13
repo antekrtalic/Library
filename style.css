@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#library-card {
+    background-color: green;
+    width: 600px;
+    height: 500px;
+    
+}
+
+label {
+    width: 70px;
+    display: inline-block;
+    margin-left: 20px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#author, #title, #pages, #year {
+    width: 50%;
+}
+
+label, input {
+    margin-top: 10px;
+    line-height: 1rem;
+}
