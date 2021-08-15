@@ -4,6 +4,9 @@ const title = document.getElementById('title').value;
 const pages = document.getElementById('read').value;
 const read = document.getElementById('read').checked;
 const year = document.getElementById('year').value;
+const form = document.getElementById('book-form');
+const book = new Book(author, title, pages, read, year);
+let action;
 
 function Book(author, title, pages, read, year) {
     this.author = author;
@@ -16,17 +19,19 @@ function Book(author, title, pages, read, year) {
 
 // Add book to library after submission
 function addBookToLibrary() {
-
-    const book = new Book(author, title, pages, read, year);
-
-    if (book.author == '' || book.title == '' || book.pages == '' || book.read == '' || book.year == '') {
-        throw("Error, fulfill all fields!");
+    
+    if (author == '' || title == '' || pages == '' || year == '') {
+        console.log("Error, fullfill all input fields");
     } else {
         myLibrary.push(book);
+        return myLibrary;    
     }
-    return myLibrary;
+    
+    form.reset();
 }
 
+
+console.log(myLibrary);
 // Display all books from myLibrary
 
 function listOfBooks(library) {
@@ -36,5 +41,4 @@ function listOfBooks(library) {
 }
 
 
-
-listOfBooks(addBookToLibrary());
+// listOfBooks(addBookToLibrary());
