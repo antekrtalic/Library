@@ -7,7 +7,7 @@
     </head>
     <body>
         <div id="library-card">
-            <form action="#">
+            <form action="" method="GET">
                 <label for="author">Author:</label>
                 <input type="text" id="author" name="author"><br>
                 <label for="title">Title:</label>
@@ -18,7 +18,7 @@
                 <input type="checkbox" id="read" name="read"><br>
                 <label for="year">Year:</label>
                 <input type="text" id="year" name="year"><br>
-                <input type="button" id="new-book" name="new-book" value="NEW BOOK">
+                <input type="button" id="new-book" name="new-book" value="NEW BOOK" onclick="addBookToLibrary()">
             </form>
         </div>
         <script src="script.js"></script>
