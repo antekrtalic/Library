@@ -36,6 +36,15 @@ function addBookToLibrary() {
 // Display all books from myLibrary
 
 function listOfBooks(library) {
+
+    const div = document.getElementById('library-card');
+    const form = document.getElementById('book-form');
+    const author = document.createElement('p');
+    author.setAttribute('id', 'author');
+
+
+    div.removeChild(form);
+
     for (let book in library) {
         console.log(library[book]);
     }
