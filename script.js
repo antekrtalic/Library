@@ -39,20 +39,45 @@ function listOfBooks(library) {
 
     const div = document.getElementById('library-card');
     const btn = document.querySelector('button');
+    const body = document.body;
 
 
     div.remove();
     btn.remove();
-    displayContent();
+    
+    // changing style for body before showing list of books
+    body.style.flexDirection = 'row';
+    body.style.justifyContent = 'space-around';
 
     for (let book in library) {
+
+        const div = document.createElement('div');
+        div.style.width = '200px';
+        div.style.height = '400px';
+        div.style.backgroundColor = 'grey';
+        div.style.border = '1px solid black';
+        div.style.display = 'flex';
+        div.style.flexDirection = 'column';
+        div.style.justifyContent = 'center';
+        div.style.alignItems = 'center';
+
+        for (let key in library[book]) {
+            
+            const p = document.createElement('p');
+
+            p.innerHTML = library[book][key];
+            div.append(p);
+            
+        }
+        
+        body.appendChild(div);
         console.log(library[book]);
     }
 }
 
 function displayContent() {
     
-    const body = document.body;
+    
     const author = document.createElement('p');
     author.setAttribute('id', 'author');
     author.innerHTML = 'Author:';
@@ -73,13 +98,8 @@ function displayContent() {
 
     const paragraphs = document.getElementsByTagName('p');
 
-    for (let paragraph in paragraphs) {
 
-        const div = document.createElement('div');
-        div.style.width = '100px';
-        div.style.height = '100px';
 
-        div.append(paragraph);
-        body.appendChild(div);
-    }
+    
+    
 }
