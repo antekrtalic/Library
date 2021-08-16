@@ -1,5 +1,5 @@
 const myLibrary = [];
-
+const form = document.getElementById('book-form');
 
 
 function Book(author, title, pages, read, year) {
@@ -14,15 +14,15 @@ function Book(author, title, pages, read, year) {
 // Add book to library after submission
 function addBookToLibrary() {
 
-    const author = document.getElementById('author').value;
-    const title = document.getElementById('title').value;
-    const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').checked;
-    const year = document.getElementById('year').value;
-    const form = document.getElementById('book-form');
-    const book = new Book(author, title, pages, read, year);
+    const author_v = document.getElementById('author').value;
+    const title_v = document.getElementById('title').value;
+    const pages_v = document.getElementById('pages').value;
+    const read_v = document.getElementById('read').checked;
+    const year_v = document.getElementById('year').value;
+    
+    const book = new Book(author_v, title_v, pages_v, read_v, year_v);
 
-    if (author == '' || title == '' || pages == '' || year == '') {
+    if (author_v == '' || title_v == '' || pages_v == '' || year_v == '') {
         console.log("Error, fullfill all input fields");
     } else {
         myLibrary.push(book);
@@ -37,9 +37,7 @@ function addBookToLibrary() {
 
 function listOfBooks(library) {
     for (let book in library) {
-        console.log(book);
+        console.log(library[book]);
     }
 }
 
-
-// listOfBooks(addBookToLibrary());
