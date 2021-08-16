@@ -38,15 +38,48 @@ function addBookToLibrary() {
 function listOfBooks(library) {
 
     const div = document.getElementById('library-card');
-    const form = document.getElementById('book-form');
-    const author = document.createElement('p');
-    author.setAttribute('id', 'author');
+    const btn = document.querySelector('button');
 
 
-    div.removeChild(form);
+    div.remove();
+    btn.remove();
+    displayContent();
 
     for (let book in library) {
         console.log(library[book]);
     }
 }
 
+function displayContent() {
+    
+    const body = document.body;
+    const author = document.createElement('p');
+    author.setAttribute('id', 'author');
+    author.innerHTML = 'Author:';
+    const title = document.createElement('p');
+    title.setAttribute('id', 'title');
+    title.innerHTML = 'Title:';
+    const pages = document.createElement('p');
+    pages.setAttribute('id', 'pages');
+    pages.innerHTML = 'Pages:';
+    const read = document.createElement('p');
+    read.setAttribute('id', 'pages');
+    read.innerHTML = 'Read:';
+    const year = document.createElement('p');
+    pages.setAttribute('id', 'year');
+    year.innerHTML = 'Year:';
+
+    // add all p elements inside div
+
+    const paragraphs = document.getElementsByTagName('p');
+
+    for (let paragraph in paragraphs) {
+
+        const div = document.createElement('div');
+        div.style.width = '100px';
+        div.style.height = '100px';
+
+        div.append(paragraph);
+        body.appendChild(div);
+    }
+}
