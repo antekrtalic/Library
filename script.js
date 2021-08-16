@@ -40,14 +40,21 @@ function listOfBooks(library) {
     const div = document.getElementById('library-card');
     const btn = document.querySelector('button');
     const body = document.body;
+    const main_div = document.createElement('div');
+
+    // main div 
+    main_div.style.width = '100%';
+    main_div.style.height = '100%';
+    main_div.style.flexDirection = 'row';
+    main_div.style.justifyContent = 'space-around';
 
 
     div.remove();
     btn.remove();
     
     // changing style for body before showing list of books
-    body.style.flexDirection = 'row';
-    body.style.justifyContent = 'space-around';
+    body.appendChild(main_div);
+    
 
     for (let book in library) {
 
@@ -61,15 +68,34 @@ function listOfBooks(library) {
         div.style.justifyContent = 'center';
         div.style.alignItems = 'center';
 
+        
+
         for (let key in library[book]) {
             
             const p = document.createElement('p');
 
-            p.innerHTML = library[book][key];
-            div.append(p);
+            if (key === 'author') {
+                p.innerHTML = 'Author: ';
+            } else if (key === 'title') {
+                p.innerHTML = 'Title: ';
+            } else if (key === 'pages') {
+                p.innerHTML = 'Pages: ';
+            } else if (key === 'read') {
+                const readButton = document.createElement('button');
+                readButton.innerHTML += library[book][key];
+                div.appendChild(readButton);
+                continue;
+            } else if (key === 'year') {
+                p.innerHTML = 'Year: ';
+            }
+
+            p.innerHTML += library[book][key];
+            div.appendChild(p);
+            
+            
             
         }
-        
+
         body.appendChild(div);
         console.log(library[book]);
     }
