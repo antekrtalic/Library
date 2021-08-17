@@ -48,8 +48,14 @@ function listOfBooks() {
 
 function readStatus(element, object) {
     
-    console.log(element);
-    console.log(object);
+    var classe = 'read';
+
+    if ( element.className == classe ){
+        element.className = 'unread';
+    } else {
+        element.className = classe;
+    }
+  
 }
 
 
@@ -109,14 +115,16 @@ function displayPage() {
             } else if (key === 'read') {
 
                 const readButton = document.createElement('button');
-                readButton.innerHTML += library[book][key];
+                
 
                 if (library[book][key] === true) {
                     readButton.setAttribute('class', 'read');
+                    readButton.innerHTML += library[book][key];
                 } else {
                     readButton.setAttribute('class', 'unread');
+                    readButton.innerHTML += library[book][key];
                 }
-                readButton.onclick = readStatus(readButton, library[book][key]);
+                readButton.onclick = readStatus(readButton, library[book]);
                 
                 div.appendChild(readButton);
                 continue;
