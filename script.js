@@ -54,14 +54,14 @@ function listOfBooks(library) {
     div.remove();
     btn.remove();
     
-    // changing style for body before showing list of books
+    // Changing style for body before showing list of books
+
     body.appendChild(main_div);
     
-
     for (let book in library) {
 
-        
         // Book card
+
         const div = document.createElement('div');
         div.setAttribute('class', `card`);
         div.style.width = '300px';
@@ -92,8 +92,10 @@ function listOfBooks(library) {
             } else if (key === 'pages') {
                 p.innerHTML = 'Pages: ';
             } else if (key === 'read') {
+
                 const readButton = document.createElement('button');
                 readButton.innerHTML += library[book][key];
+                readButton.setAttribute('class', 'read');
                 div.appendChild(readButton);
                 continue;
             } else if (key === 'year') {
@@ -103,10 +105,8 @@ function listOfBooks(library) {
             p.innerHTML += library[book][key];
             div.appendChild(p);
             
-            
-            
-            
         }
+
         div.appendChild(deleteButton);
         main_div.appendChild(div);
         console.log(library[book]);
