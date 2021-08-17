@@ -43,8 +43,10 @@ function listOfBooks(library) {
     const main_div = document.createElement('div');
 
     // main div 
+    main_div.setAttribute('id', 'main');
     main_div.style.width = '100%';
     main_div.style.height = '100%';
+    main_div.style.display = 'flex';
     main_div.style.flexDirection = 'row';
     main_div.style.justifyContent = 'space-around';
 
@@ -59,20 +61,25 @@ function listOfBooks(library) {
     for (let book in library) {
 
         const div = document.createElement('div');
-        div.style.width = '200px';
-        div.style.height = '400px';
+        div.style.width = '300px';
+        div.style.height = '600px';
         div.style.backgroundColor = 'grey';
         div.style.border = '1px solid black';
-        div.style.display = 'flex';
-        div.style.flexDirection = 'column';
-        div.style.justifyContent = 'center';
-        div.style.alignItems = 'center';
+        div.style.textAlign = 'center';
+        
 
         
 
         for (let key in library[book]) {
             
             const p = document.createElement('p');
+            const deleteButton = document.createElement('button');
+            
+            deleteButton.onclick = deleteCard(library[book]);
+            deleteButton.innerHTML = 'Remove book';
+            p.style.marginTop = '5px';
+            p.style.fontSize = '2rem';
+            p.style.fontFamily = '"Times New Roman", Times, serif';
 
             if (key === 'author') {
                 p.innerHTML = 'Author: ';
@@ -96,7 +103,7 @@ function listOfBooks(library) {
             
         }
 
-        body.appendChild(div);
+        main_div.appendChild(div);
         console.log(library[book]);
     }
 }
@@ -124,8 +131,11 @@ function displayContent() {
 
     const paragraphs = document.getElementsByTagName('p');
 
-
-
     
-    
+}
+
+// Deleting book card
+
+function deleteCard(currentBook) {
+    document.getElementById('main').remove(currentBook);
 }
