@@ -32,13 +32,32 @@ function addBookToLibrary() {
 }
 
 
-
 // Display all books from myLibrary
 
-function listOfBooks(library) {
+function listOfBooks() {
 
     const div = document.getElementById('library-card');
     const btn = document.querySelector('button');
+
+    div.remove();
+    btn.remove();
+    
+    displayPage();
+}
+
+
+function readStatus(element, object) {
+    
+    console.log(element);
+    console.log(object);
+}
+
+
+// Main page with list of books
+
+function displayPage() {
+
+    const library = myLibrary;
     const body = document.body;
     const main_div = document.createElement('div');
 
@@ -50,10 +69,6 @@ function listOfBooks(library) {
     main_div.style.flexDirection = 'row';
     main_div.style.justifyContent = 'space-around';
 
-
-    div.remove();
-    btn.remove();
-    
     // Changing style for body before showing list of books
 
     body.appendChild(main_div);
@@ -95,7 +110,14 @@ function listOfBooks(library) {
 
                 const readButton = document.createElement('button');
                 readButton.innerHTML += library[book][key];
-                readButton.setAttribute('class', 'read');
+
+                if (library[book][key] === true) {
+                    readButton.setAttribute('class', 'read');
+                } else {
+                    readButton.setAttribute('class', 'unread');
+                }
+                readButton.onclick = readStatus(readButton, library[book][key]);
+                
                 div.appendChild(readButton);
                 continue;
             } else if (key === 'year') {
@@ -112,4 +134,3 @@ function listOfBooks(library) {
         console.log(library[book]);
     }
 }
-
