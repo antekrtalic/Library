@@ -60,23 +60,27 @@ function listOfBooks(library) {
 
     for (let book in library) {
 
+        
+        // Book card
         const div = document.createElement('div');
+        div.setAttribute('class', `card`);
         div.style.width = '300px';
         div.style.height = '600px';
         div.style.backgroundColor = 'grey';
         div.style.border = '1px solid black';
         div.style.textAlign = 'center';
         
+        // Delete button for each book card
+        const deleteButton = document.createElement('button');
 
-        
+        deleteButton.setAttribute('class', 'delete');
+        deleteButton.setAttribute('onclick', 'return this.parentElement.remove()');
+        deleteButton.innerHTML = 'Remove book';
+        deleteButton.style.backgroundColor = 'red';
 
         for (let key in library[book]) {
             
             const p = document.createElement('p');
-            const deleteButton = document.createElement('button');
-            
-            deleteButton.onclick = deleteCard(library[book]);
-            deleteButton.innerHTML = 'Remove book';
             p.style.marginTop = '5px';
             p.style.fontSize = '2rem';
             p.style.fontFamily = '"Times New Roman", Times, serif';
@@ -101,41 +105,11 @@ function listOfBooks(library) {
             
             
             
+            
         }
-
+        div.appendChild(deleteButton);
         main_div.appendChild(div);
         console.log(library[book]);
     }
 }
 
-function displayContent() {
-    
-    
-    const author = document.createElement('p');
-    author.setAttribute('id', 'author');
-    author.innerHTML = 'Author:';
-    const title = document.createElement('p');
-    title.setAttribute('id', 'title');
-    title.innerHTML = 'Title:';
-    const pages = document.createElement('p');
-    pages.setAttribute('id', 'pages');
-    pages.innerHTML = 'Pages:';
-    const read = document.createElement('p');
-    read.setAttribute('id', 'pages');
-    read.innerHTML = 'Read:';
-    const year = document.createElement('p');
-    pages.setAttribute('id', 'year');
-    year.innerHTML = 'Year:';
-
-    // add all p elements inside div
-
-    const paragraphs = document.getElementsByTagName('p');
-
-    
-}
-
-// Deleting book card
-
-function deleteCard(currentBook) {
-    document.getElementById('main').remove(currentBook);
-}
