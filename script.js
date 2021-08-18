@@ -6,7 +6,9 @@ function Book(author, title, pages, read, year) {
     this.title = title;
     this.pages = pages;
     this.read = read;
-    this.year = year;
+    this.toggleClass = () => {
+        this.read = !this.read;
+    }
 }
 
 
@@ -21,6 +23,7 @@ function addBookToLibrary() {
     const deleteForm = document.getElementById('book-form');
     
     const book = new Book(author_v, title_v, pages_v, read_v, year_v);
+    
 
     if (author_v == '' || title_v == '' || pages_v == '' || year_v == '') {
         console.log("Error, fullfill all input fields");
@@ -46,39 +49,13 @@ function listOfBooks() {
 }
 
 
-function readStatus(element, object) {
+// function readStatus() {
 
-    let books = myLibrary;
-    // if (element.className === 'unread' && object.read === false) {
-    //     element.className = 'read';
-    //     element.innerHTML = 'read';
-    //     object.read = true;
-    // } else {
-    //     element.className = 'unread';
-    //     element.innerHTML = 'unread';
-    //     object.read = false;
-    // }
-    // console.log(object.read);    
-
-    let classe = 'readCheck read';
-
-    let btns = document.getElementsByClassName('readCheck');
-    
-    for (let i = 0; i < btns.length; i++) {
-
-        if (btns[i].className == classe && btns[i].clicked) {
-            btns[i].className = classe.replace('read', 'unread');
-            btns[i].innerHTML = 'unread';
-            books[i].read = false;
-        } else {
-            btns[i].className = classe;
-            btns[i].innerHTML = 'read';
-            books[i].read = true;
-        }
-    }
-    console.log(btns.length);
+//     Book.prototype.toggleClass = function() {
+//         this.read = !this.read;
+//     }
   
-}
+// }
 
 
 // Main page with list of books
@@ -146,15 +123,17 @@ function displayPage() {
                     readButton.setAttribute('class', 'readCheck unread');
                     readButton.innerHTML += library[book][key];
                 }
-                readButton.onclick = readStatus;
+                readButton.onclick = library[book].toggleClass;
+                
                 
                 div.appendChild(readButton);
                 continue;
             } else if (key === 'year') {
                 p.innerHTML = 'Year: ';
-            }
-
+            } 
+            
             p.innerHTML += library[book][key];
+
             div.appendChild(p);
             
         }
