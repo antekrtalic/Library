@@ -34,117 +34,136 @@ function addBookToLibrary() {
 
 // Display all books from myLibrary
 
-// function listOfBooks() {
+function listOfBooks() {
 
-//     const div = document.getElementById('library-card');
-//     const btn = document.querySelector('button');
+    const div = document.getElementById('library-card');
+    const btn = document.querySelector('button');
 
-//     div.remove();
-//     btn.remove();
+    div.remove();
+    btn.remove();
     
-//     displayPage();
-// }
+    displayPage();
+}
 
 
-// function readStatus(element, object) {
+function readStatus(element, object) {
+
+    let books = myLibrary;
+    // if (element.className === 'unread' && object.read === false) {
+    //     element.className = 'read';
+    //     element.innerHTML = 'read';
+    //     object.read = true;
+    // } else {
+    //     element.className = 'unread';
+    //     element.innerHTML = 'unread';
+    //     object.read = false;
+    // }
+    // console.log(object.read);    
+
+    let classe = 'readCheck read';
+
+    let btns = document.getElementsByClassName('readCheck');
     
-//     if (element.className === 'unread' && object.read === false) {
-//         element.className = 'read';
-//         element.innerHTML = 'read';
-//         object.read = true;
-//     } else {
-//         element.className = 'unread';
-//         element.innerHTML = 'unread';
-//         object.read = false;
-//     }
-//     console.log(object.read);
+    for (let i = 0; i < btns.length; i++) {
+
+        if (btns[i].className == classe && btns[i].clicked) {
+            btns[i].className = classe.replace('read', 'unread');
+            btns[i].innerHTML = 'unread';
+            books[i].read = false;
+        } else {
+            btns[i].className = classe;
+            btns[i].innerHTML = 'read';
+            books[i].read = true;
+        }
+    }
+    console.log(btns.length);
   
-// }
+}
 
 
-// // Main page with list of books
+// Main page with list of books
 
-// function displayPage() {
+function displayPage() {
 
-//     const library = myLibrary;
-//     const body = document.body;
-//     const main_div = document.createElement('div');
+    const library = myLibrary;
+    const body = document.body;
+    const main_div = document.createElement('div');
 
-//     // main div 
-//     main_div.setAttribute('id', 'main');
-//     main_div.style.width = '100%';
-//     main_div.style.height = '100%';
-//     main_div.style.display = 'flex';
-//     main_div.style.flexDirection = 'row';
-//     main_div.style.justifyContent = 'space-around';
+    // main div 
+    main_div.setAttribute('id', 'main');
+    main_div.style.width = '100%';
+    main_div.style.height = '100%';
+    main_div.style.display = 'flex';
+    main_div.style.flexDirection = 'row';
+    main_div.style.justifyContent = 'space-around';
 
-//     // Changing style for body before showing list of books
+    // Changing style for body before showing list of books
 
-//     body.appendChild(main_div);
+    body.appendChild(main_div);
     
-//     for (let book in library) {
+    for (let book in library) {
 
-//         // Book card
+        // Book card
 
-//         const div = document.createElement('div');
-//         div.setAttribute('class', `card`);
-//         div.style.width = '300px';
-//         div.style.height = '600px';
-//         div.style.backgroundColor = 'grey';
-//         div.style.border = '1px solid black';
-//         div.style.textAlign = 'center';
+        const div = document.createElement('div');
+        div.setAttribute('class', `card`);
+        div.style.width = '300px';
+        div.style.height = '600px';
+        div.style.backgroundColor = 'grey';
+        div.style.border = '1px solid black';
+        div.style.textAlign = 'center';
         
-//         // Delete button for each book card
-//         const deleteButton = document.createElement('button');
+        // Delete button for each book card
+        const deleteButton = document.createElement('button');
 
-//         deleteButton.setAttribute('class', 'delete');
-//         deleteButton.setAttribute('onclick', 'return this.parentElement.remove()');
-//         deleteButton.innerHTML = 'Remove book';
-//         deleteButton.style.backgroundColor = 'red';
+        deleteButton.setAttribute('class', 'delete');
+        deleteButton.setAttribute('onclick', 'return this.parentElement.remove()');
+        deleteButton.innerHTML = 'Remove book';
+        deleteButton.style.backgroundColor = 'red';
 
-//         for (let key in library[book]) {
+        for (let key in library[book]) {
             
-//             const p = document.createElement('p');
-//             p.style.marginTop = '5px';
-//             p.style.fontSize = '2rem';
-//             p.style.fontFamily = '"Times New Roman", Times, serif';
+            const p = document.createElement('p');
+            p.style.marginTop = '5px';
+            p.style.fontSize = '2rem';
+            p.style.fontFamily = '"Times New Roman", Times, serif';
 
-//             if (key === 'author') {
-//                 p.innerHTML = 'Author: ';
-//             } else if (key === 'title') {
-//                 p.innerHTML = 'Title: ';
-//             } else if (key === 'pages') {
-//                 p.innerHTML = 'Pages: ';
-//             } else if (key === 'read') {
+            if (key === 'author') {
+                p.innerHTML = 'Author: ';
+            } else if (key === 'title') {
+                p.innerHTML = 'Title: ';
+            } else if (key === 'pages') {
+                p.innerHTML = 'Pages: ';
+            } else if (key === 'read') {
 
-//                 const readButton = document.createElement('button');
+                const readButton = document.createElement('button');
                 
 
-//                 if (library[book][key] === true) {
-//                     readButton.setAttribute('class', 'read');
-//                     readButton.innerHTML += library[book][key];
-//                 } else {
-//                     readButton.setAttribute('class', 'unread');
-//                     readButton.innerHTML += library[book][key];
-//                 }
-//                 readButton.addEventListener('click', readStatus(readButton, library[book]));
+                if (library[book][key] === true) {
+                    readButton.setAttribute('class', 'readCheck read');
+                    readButton.innerHTML += library[book][key];
+                } else {
+                    readButton.setAttribute('class', 'readCheck unread');
+                    readButton.innerHTML += library[book][key];
+                }
+                readButton.onclick = readStatus;
                 
-//                 div.appendChild(readButton);
-//                 continue;
-//             } else if (key === 'year') {
-//                 p.innerHTML = 'Year: ';
-//             }
+                div.appendChild(readButton);
+                continue;
+            } else if (key === 'year') {
+                p.innerHTML = 'Year: ';
+            }
 
-//             p.innerHTML += library[book][key];
-//             div.appendChild(p);
+            p.innerHTML += library[book][key];
+            div.appendChild(p);
             
-//         }
+        }
 
-//         div.appendChild(deleteButton);
-//         main_div.appendChild(div);
-//         console.log(library[book]);
-//     }
-// }
+        div.appendChild(deleteButton);
+        main_div.appendChild(div);
+        console.log(library[book]);
+    }
+}
 
 
 function formSubmit() {
@@ -205,7 +224,7 @@ function formSubmit() {
     addBook.setAttribute('value', 'ADD');
     addBook.onclick = addBookToLibrary;
 
-    mainDiv.removeChild(myList);
+    // mainDiv.removeChild(myList);
     mainDiv.removeChild(newBook);
 
     form.appendChild(formHeading);
