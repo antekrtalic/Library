@@ -8,7 +8,8 @@ function Book(author, title, pages, read, year) {
     this.read = read;
     this.toggleClass = () => {
         this.read = !this.read;
-    }
+    };
+    this.year = year;
 }
 
 
@@ -49,13 +50,7 @@ function listOfBooks() {
 }
 
 
-// function readStatus() {
 
-//     Book.prototype.toggleClass = function() {
-//         this.read = !this.read;
-//     }
-  
-// }
 
 
 // Main page with list of books
@@ -118,21 +113,40 @@ function displayPage() {
 
                 if (library[book][key] === true) {
                     readButton.setAttribute('class', 'readCheck read');
-                    readButton.innerHTML += library[book][key];
+                    // readButton.innerHTML += library[book][key];
+                    readButton.innerHTML = 'Read';
                 } else {
                     readButton.setAttribute('class', 'readCheck unread');
-                    readButton.innerHTML += library[book][key];
+                    readButton.innerHTML = 'Unread';
                 }
-                readButton.onclick = library[book].toggleClass;
+                // readButton.onclick = library[book].toggleClass;
+
+                // changing style of readButton depending on status
+                readButton.onclick = () => {
+                    library[book].toggleClass();
+                    const read = library[book].read;
+                    if (read === true) {
+                        readButton.className = 'readCheck read';
+                        readButton.innerHTML = 'Read'
+                    } else {
+                        readButton.className = 'readCheck unread';
+                        readButton.innerHTML = 'Unread';
+                    }
+                }
                 
                 
                 div.appendChild(readButton);
                 continue;
             } else if (key === 'year') {
                 p.innerHTML = 'Year: ';
+                
             } 
+
+            if (key != 'toggleClass') {
+                p.innerHTML += library[book][key];
+            }
             
-            p.innerHTML += library[book][key];
+            
 
             div.appendChild(p);
             
