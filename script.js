@@ -57,15 +57,17 @@ function displayPage() {
 
     const library = myLibrary;
     const body = document.body;
-    const main_div = document.createElement('div');
-
+    //const main_div = document.createElement('div');
+    const main_div = document.querySelector('#main');
     // main div 
-    main_div.setAttribute('id', 'main');
+    //main_div.setAttribute('id', 'main');
     main_div.style.width = '100%';
     main_div.style.height = '100%';
-    main_div.style.display = 'flex';
-    main_div.style.flexDirection = 'row';
-    main_div.style.justifyContent = 'space-around';
+    // main_div.style.display = 'flex';
+    // main_div.style.justifyContent = 'space-round';
+    // main_div.style.alignItems = 'center';
+    // main_div.style.flexDirection = 'row';
+    
 
     // Changing style for body before showing list of books
 
@@ -78,7 +80,7 @@ function displayPage() {
         const div = document.createElement('div');
         div.setAttribute('class', `card`);
         div.style.width = '300px';
-        div.style.height = '600px';
+        div.style.height = '500px';
         div.style.backgroundColor = '#383836';
         div.style.border = '1px solid black';
         div.style.textAlign = 'center';
@@ -90,22 +92,28 @@ function displayPage() {
         deleteButton.setAttribute('onclick', 'return this.parentElement.remove()');
         deleteButton.innerHTML = 'Remove book';
         deleteButton.style.backgroundColor = 'red';
+        deleteButton.style.marginTop = '20px'
 
         for (let key in library[book]) {
-            
+
             const p = document.createElement('p');
             p.style.marginTop = '5px';
             p.style.fontSize = '2rem';
             p.style.fontFamily = '"Times New Roman", Times, serif';
+            
 
             if (key === 'author') {
+                
                 p.innerHTML = 'Author: ';
             } else if (key === 'title') {
+                
                 p.innerHTML = 'Title: ';
             } else if (key === 'pages') {
+                
                 p.innerHTML = 'Pages: ';
             } else if (key === 'read') {
 
+                p.remove();
                 const readButton = document.createElement('button');
                 
 
@@ -136,9 +144,12 @@ function displayPage() {
                 div.appendChild(readButton);
                 continue;
             } else if (key === 'year') {
+                
                 p.innerHTML = 'Year: ';
                 
-            } 
+            } else {
+                continue;
+            }
 
             if (key != 'toggleClass') {
                 p.innerHTML += library[book][key];
@@ -217,6 +228,8 @@ function formSubmit() {
 
     // mainDiv.removeChild(myList);
     mainDiv.removeChild(newBook);
+
+    // check if input is clicked
 
     form.appendChild(formHeading);
     form.appendChild(author);
