@@ -51,8 +51,6 @@ function listOfBooks() {
 
 
 
-
-
 // Main page with list of books
 
 function displayPage() {
@@ -81,7 +79,7 @@ function displayPage() {
         div.setAttribute('class', `card`);
         div.style.width = '300px';
         div.style.height = '600px';
-        div.style.backgroundColor = 'grey';
+        div.style.backgroundColor = '#383836';
         div.style.border = '1px solid black';
         div.style.textAlign = 'center';
         
@@ -112,24 +110,24 @@ function displayPage() {
                 
 
                 if (library[book][key] === true) {
-                    readButton.setAttribute('class', 'readCheck read');
-                    // readButton.innerHTML += library[book][key];
+                    readButton.setAttribute('class', 'readCheck readButton');
+                    
                     readButton.innerHTML = 'Read';
                 } else {
-                    readButton.setAttribute('class', 'readCheck unread');
+                    readButton.setAttribute('class', 'readCheck unreadButton');
                     readButton.innerHTML = 'Unread';
                 }
-                // readButton.onclick = library[book].toggleClass;
+                
 
                 // changing style of readButton depending on status
                 readButton.onclick = () => {
                     library[book].toggleClass();
                     const read = library[book].read;
                     if (read === true) {
-                        readButton.className = 'readCheck read';
+                        readButton.setAttribute('class', 'readCheck readButton');
                         readButton.innerHTML = 'Read'
                     } else {
-                        readButton.className = 'readCheck unread';
+                        readButton.setAttribute('class', 'readCheck unreadButton');
                         readButton.innerHTML = 'Unread';
                     }
                 }
