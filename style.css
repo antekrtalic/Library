@@ -85,7 +85,7 @@ h2 {
 }
 
 #author {
-    margin-top: 70px;
+    margin-top: 40px;
 }
 
 input {
@@ -116,20 +116,23 @@ input {
     color: #173e43;
     text-align: left;
     padding-left: 20px;
-    padding-top: 30px;
+    padding-top: 40px;
 }
 
 .card p{
+    margin-top: 10px;
+    font-size: 1.7rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.card p:last-of-type {
     margin-top: 20px;
 }
 
 
-
 /* Read button */
 
-.readButton {
-    color: #173e43;
-    background-color: #3fb0ac;
+.readCheck {
     padding: 2px 5px;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
@@ -137,28 +140,32 @@ input {
     height:40px;
     border: none;
     cursor: pointer;
-    
+}
+
+.readButton {
+    color: #173e43;
+    background-color: #3fb0ac;
 }
 
 .unreadButton {
     color: #173e43;
     background-color: #dddfd4;
-    padding: 2px 5px;
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100px;
-    height: 40px;
-    cursor: pointer;
-    border: none;
 }
 
 .delete {
-    background-color: red;
-    margin-top: 20px;
+    background-color: #dddfd4;
+    margin-top: 80px;
+    margin-left: 32%;
     font-size: 16px;
-    border: 1px solid black;
+    border: 1px solid #173e43;
     border-radius: 5px;
     padding: 2px 5px;
-    color: white;
+    color: #173e43;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+}
 
+.delete:hover {
+    background-color: #3fb0ac;
 }

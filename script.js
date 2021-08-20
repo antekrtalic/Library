@@ -70,10 +70,17 @@ function displayPage() {
     // main_div.style.justifyContent = 'space-round';
     // main_div.style.alignItems = 'center';
     // main_div.style.flexDirection = 'row';
+
+    if (library.length > 0) {
+        console.log("da");
+        const myList = document.createElement('button');
+        myList.setAttribute('id', 'myList');
+        myList.setAttribute('onclick', 'listOfBooks()');
+        myList.innerHTML = 'MY LIST';
+        main_div.appendChild(myList);
+    }
     
-
     // Changing style for body before showing list of books
-
     body.appendChild(main_div);
     
     for (let book in library) {
@@ -92,17 +99,41 @@ function displayPage() {
         const deleteButton = document.createElement('button');
 
         deleteButton.setAttribute('class', 'delete');
-        deleteButton.setAttribute('onclick', 'return this.parentElement.remove()');
-        deleteButton.innerHTML = 'Remove book';
+        // deleteButton.setAttribute('onclick', 'return this.parentElement.remove()');
+        deleteButton.addEventListener('click', () => {
+            deleteButton.parentElement.remove();
+            myLibrary.splice(book, book + 1);
+            
+            
+            console.log("da");
+
+            if (myLibrary.length === 0) {
+
+                const newBook = document.createElement('button');
+                newBook.setAttribute('id', 'newBook');
+                newBook.setAttribute('onclick', 'formSubmit()');
+                newBook.innerHTML = 'NEW BOOK';
+                
+                main_div.style.flexDirection = 'row';
+                main_div.appendChild(newBook)
+            }
+            
+
+    
+            
+        })
+
+        
+        deleteButton.innerHTML = 'DELETE';
         // deleteButton.style.backgroundColor = 'red';
         // deleteButton.style.marginTop = '20px'
 
         for (let key in library[book]) {
 
             const p = document.createElement('p');
-            p.style.marginTop = '5px';
-            p.style.fontSize = '2rem';
-            p.style.fontFamily = '"Times New Roman", Times, serif';
+            // p.style.marginTop = '5px';
+            // p.style.fontSize = '1.7rem';
+            // p.style.fontFamily = '"Times New Roman", Times, serif';
             
 
             if (key === 'author') {
@@ -143,21 +174,23 @@ function displayPage() {
                 
                 
                 div.appendChild(readButton);
+
                 continue;
+
             } else if (key === 'year') {
                 
                 p.innerHTML = 'Year: ';
                 
             } else {
+
                 continue;
+
             }
 
             if (key != 'toggleClass') {
                 p.innerHTML += library[book][key];
             }
             
-            
-
             div.appendChild(p);
             
         }
