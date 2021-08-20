@@ -31,9 +31,32 @@ html, body {
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
+    height: 100%;
+    width: 100%;
 }
 
+#myList, #newBook {
+    margin: 4px 2px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    background-color: aqua;
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+}
+
+
 /* *****FORM***** */ 
+
+form {
+    margin-left: 35%;
+    text-align: left;
+}
 
 h2, input{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -62,21 +85,6 @@ input {
     
 }
 
-#myList, #newBook {
-    margin: 4px 2px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border: none;
-    background-color: aqua;
-    padding: 1em;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-}
-
 #addButton {
     background-color: orangered;
     color:rgb(39, 18, 63);
@@ -85,6 +93,18 @@ input {
     padding: 5px 15px;
     width: 100px;
     height: 40px;
+}
+
+/* Book card */
+
+.card {
+    width: 300px;
+    height: 500px;
+    background-color: #d8d83c;
+    border: 1px solid black;
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 20px;
 }
 
 /* Read button */
@@ -111,7 +131,13 @@ input {
     height: 40px;
 }
 
-form {
-    margin-left: 35%;
-    text-align: left;
+.delete {
+    background-color: red;
+    margin-top: 20px;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: white;
+
 }

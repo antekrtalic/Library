@@ -25,6 +25,8 @@ function addBookToLibrary() {
     
     const book = new Book(author_v, title_v, pages_v, read_v, year_v);
     
+    // checks if input is clicked
+
 
     if (author_v == '' || title_v == '' || pages_v == '' || year_v == '') {
         console.log("Error, fullfill all input fields");
@@ -63,6 +65,7 @@ function displayPage() {
     //main_div.setAttribute('id', 'main');
     main_div.style.width = '100%';
     main_div.style.height = '100%';
+    main_div.style.flexDirection = 'column';
     // main_div.style.display = 'flex';
     // main_div.style.justifyContent = 'space-round';
     // main_div.style.alignItems = 'center';
@@ -79,11 +82,11 @@ function displayPage() {
 
         const div = document.createElement('div');
         div.setAttribute('class', `card`);
-        div.style.width = '300px';
-        div.style.height = '500px';
-        div.style.backgroundColor = '#383836';
-        div.style.border = '1px solid black';
-        div.style.textAlign = 'center';
+        // div.style.width = '300px';
+        // div.style.height = '500px';
+        // div.style.backgroundColor = '#383836';
+        // div.style.border = '1px solid black';
+        // div.style.textAlign = 'center';
         
         // Delete button for each book card
         const deleteButton = document.createElement('button');
@@ -91,8 +94,8 @@ function displayPage() {
         deleteButton.setAttribute('class', 'delete');
         deleteButton.setAttribute('onclick', 'return this.parentElement.remove()');
         deleteButton.innerHTML = 'Remove book';
-        deleteButton.style.backgroundColor = 'red';
-        deleteButton.style.marginTop = '20px'
+        // deleteButton.style.backgroundColor = 'red';
+        // deleteButton.style.marginTop = '20px'
 
         for (let key in library[book]) {
 
@@ -113,7 +116,8 @@ function displayPage() {
                 p.innerHTML = 'Pages: ';
             } else if (key === 'read') {
 
-                p.remove();
+                p.style.display = 'inline-block';
+                p.style.innerHTML = 'Status: ';
                 const readButton = document.createElement('button');
                 
 
@@ -194,13 +198,13 @@ function formSubmit() {
     author.setAttribute('type', 'text');
     author.setAttribute('id', 'author');
     author.setAttribute('name', 'author');
-    author.setAttribute('value', 'Author');
+    author.setAttribute('placeholder', 'Author');
 
     // input title
     title.setAttribute('type', 'text');
     title.setAttribute('id', 'title');
     title.setAttribute('name', 'title');
-    title.setAttribute('value', 'Title');
+    title.setAttribute('placeholder', 'Title');
 
     // input read
     read.setAttribute('type', 'checkbox');
@@ -211,13 +215,13 @@ function formSubmit() {
     pages.setAttribute('type', 'text');
     pages.setAttribute('id', 'pages');
     pages.setAttribute('name', 'pages');
-    pages.setAttribute('value', 'Pages');
+    pages.setAttribute('placeholder', 'Pages');
 
     //input year
     year.setAttribute('type', 'text');
     year.setAttribute('id', 'year');
     year.setAttribute('name', 'year');
-    year.setAttribute('value', 'Year');
+    year.setAttribute('placeholder', 'Year');
 
     // addBook button
     addBook.setAttribute('type', 'button');
