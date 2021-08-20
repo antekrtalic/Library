@@ -116,11 +116,8 @@ function displayPage() {
                 p.innerHTML = 'Pages: ';
             } else if (key === 'read') {
 
-                p.style.display = 'inline-block';
-                p.style.innerHTML = 'Status: ';
                 const readButton = document.createElement('button');
                 
-
                 if (library[book][key] === true) {
                     readButton.setAttribute('class', 'readCheck readButton');
                     
@@ -190,6 +187,7 @@ function formSubmit() {
     const mainDiv = document.getElementById('main');
     const readText = document.createElement('p');
     readText.innerHTML = 'Read: ';
+    readText.style.color = '#173e43';
 
     // Heading
     formHeading.innerHTML = 'Book Form';
@@ -210,6 +208,7 @@ function formSubmit() {
     read.setAttribute('type', 'checkbox');
     read.setAttribute('id', 'read');
     read.setAttribute('name', 'read');
+    
 
     // input pages
     pages.setAttribute('type', 'text');

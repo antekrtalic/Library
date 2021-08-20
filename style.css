@@ -18,12 +18,12 @@ html, body {
 #header {
     width: 100%;
     height: 20%;
-    background-color: aquamarine;
+    background-color: #dddfd4;
     font-family: 'Parisienne', cursive;
     font-size: 80px;
     font-weight: 400;
     padding-left: 20px;
-
+    color: #173e43;
 }
 
 #main {
@@ -40,7 +40,8 @@ html, body {
     font-size: 1.2rem;
     cursor: pointer;
     border: none;
-    background-color: aqua;
+    background-color: #3fb0ac;
+    color: #173e43;
     padding: 1em;
     text-align: center;
     text-decoration: none;
@@ -53,10 +54,10 @@ html, body {
 
 /* *****FORM***** */ 
 
-form {
+/* form {
     margin-left: 35%;
     text-align: left;
-}
+} */
 
 h2, input{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -64,71 +65,86 @@ h2, input{
 
 h2 {
     margin-top: 20px;
-}
-
-#library-card {
-    background-color: green;
-    width: 600px;
-    height: 500px;
     text-align: center;
 }
 
+#library-card {
+    background-color: #fae596;
+    width: 600px;
+    height: 500px;
+    text-align: left;
+}
+
+#book-form {
+    margin-left: 30px;
+}
+
+h2 {
+    color: #173e43;
+}
 
 #author, #title, #pages, #year {
     width: 50%;
 }
 
+#author {
+    margin-top: 70px;
+}
+
 input {
-    margin-top: 20px;
+    margin-top: 25px;
     line-height: 1.7rem;
-    
-    
 }
 
 #addButton {
-    background-color: orangered;
-    color:rgb(39, 18, 63);
+    background-color: #3fb0ac;
+    color:#173e43;
     font-size: 16px;;
     display: block;
     padding: 5px 15px;
     width: 100px;
     height: 40px;
+    border: none;
+    cursor: pointer;
+    margin-top: 40px;
+    margin-left: 240px;
 }
 
 /* Book card */
 
 .card {
-    width: 300px;
+    width: 350px;
     height: 500px;
-    background-color: #d8d83c;
-    border: 1px solid black;
+    background-color: #fae596;
+    color: #173e43;
     text-align: left;
-    padding-left: 10px;
+    padding-left: 20px;
     padding-top: 20px;
 }
 
 /* Read button */
 
 .readButton {
-    color: #fff;
-    background-color: grey;
+    color: #173e43;
+    background-color: #3fb0ac;
     padding: 2px 5px;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
-    border: 1px solid #000;
     width: 100px;
     height:40px;
+    border: none;
+    cursor: pointer;
 }
 
 .unreadButton {
-    color: #fff;
-    background-color: blue;
+    color: #173e43;
+    background-color: #dddfd4;
     padding: 2px 5px;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
-    border: 1px solid rgb(78, 57, 43);
     width: 100px;
     height: 40px;
+    cursor: pointer;
 }
 
 .delete {
