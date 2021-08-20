@@ -33,6 +33,15 @@ function addBookToLibrary() {
     } else {
         myLibrary.push(book);
     }
+    if (myLibrary.length > 0) {
+        const main_div = document.getElementById('main');
+
+        const myList = document.createElement('button');
+        myList.setAttribute('id', 'myList');
+        myList.setAttribute('onclick', 'listOfBooks()');
+        myList.innerHTML = 'MY LIST';
+        main_div.insertBefore(myList, main_div.firstChild);
+    }
     
     deleteForm.reset();
 }
@@ -71,14 +80,7 @@ function displayPage() {
     // main_div.style.alignItems = 'center';
     // main_div.style.flexDirection = 'row';
 
-    if (library.length > 0) {
-        console.log("da");
-        const myList = document.createElement('button');
-        myList.setAttribute('id', 'myList');
-        myList.setAttribute('onclick', 'listOfBooks()');
-        myList.innerHTML = 'MY LIST';
-        main_div.appendChild(myList);
-    }
+
     
     // Changing style for body before showing list of books
     body.appendChild(main_div);
@@ -105,23 +107,21 @@ function displayPage() {
             myLibrary.splice(book, book + 1);
             
             
-            console.log("da");
+            const newBook = document.createElement('button');
+            newBook.setAttribute('id', 'newBook');
+            newBook.setAttribute('onclick', 'formSubmit()');
+            newBook.innerHTML = 'NEW BOOK';
 
             if (myLibrary.length === 0) {
-
-                const newBook = document.createElement('button');
-                newBook.setAttribute('id', 'newBook');
-                newBook.setAttribute('onclick', 'formSubmit()');
-                newBook.innerHTML = 'NEW BOOK';
                 
                 main_div.style.flexDirection = 'row';
-                main_div.appendChild(newBook)
-            }
-            
+                main_div.insertBefore(newBook);
 
-    
-            
-        })
+            } else {
+                // Implement where to position button for adding new book
+            }
+
+        });
 
         
         deleteButton.innerHTML = 'DELETE';
