@@ -33,15 +33,7 @@ function addBookToLibrary() {
     } else {
         myLibrary.push(book);
     }
-    if (myLibrary.length > 0) {
-        const main_div = document.getElementById('main');
-
-        const myList = document.createElement('button');
-        myList.setAttribute('id', 'myList');
-        myList.setAttribute('onclick', 'listOfBooks()');
-        myList.innerHTML = 'MY LIST';
-        main_div.insertBefore(myList, main_div.firstChild);
-    }
+    
     
     deleteForm.reset();
 }
@@ -55,7 +47,7 @@ function listOfBooks() {
     const btn = document.querySelector('button');
 
     div.remove();
-    btn.remove();
+    // btn.remove();
     
     displayPage();
 }
@@ -109,17 +101,20 @@ function displayPage() {
             
             const newBook = document.createElement('button');
             newBook.setAttribute('id', 'newBook');
-            newBook.setAttribute('onclick', 'formSubmit()');
+            // newBook.setAttribute('onclick', 'formSubmit()');
             newBook.innerHTML = 'NEW BOOK';
-
-            if (myLibrary.length === 0) {
+            newBook.addEventListener('click', () => {
+                formSubmit();
+                if (myLibrary.length === 0) {
                 
-                main_div.style.flexDirection = 'row';
-                main_div.insertBefore(newBook);
+                    main_div.style.flexDirection = 'row';
+                    main_div.insertBefore(newBook);
+    
+                } 
+            })
+            
 
-            } else {
-                // Implement where to position button for adding new book
-            }
+            
 
         });
 
@@ -260,7 +255,26 @@ function formSubmit() {
     addBook.setAttribute('id', 'addButton');
     addBook.setAttribute('name', 'addButton');
     addBook.setAttribute('value', 'ADD');
-    addBook.onclick = addBookToLibrary;
+    // addBook.onclick = addBookToLibrary;
+    addBook.addEventListener('click', () => {
+        addBookToLibrary();
+        const main_div = document.getElementById('main');
+        if (myLibrary.length > 0) {
+            console.log("da");
+            
+            const myList = document.createElement('button');
+            myList.setAttribute('id', 'myList');
+            myList.setAttribute('onclick', 'listOfBooks()');
+            myList.innerHTML = 'MY LIST';
+            main_div.insertBefore(myList, main_div.firstChild);
+        } else {
+            const newBook = document.createElemenet('button');
+            newBook.setAttribute('id', 'newBook');
+            newBook.setAttribute('onclick', 'listOfBooks()');
+            newBook.innerHTML = 'NEW BOOK';
+            mainDiv.appendChild(newBook);
+        }
+    })
 
     // mainDiv.removeChild(myList);
     mainDiv.removeChild(newBook);
