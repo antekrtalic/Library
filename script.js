@@ -46,14 +46,16 @@ function listOfBooks() {
     const div = document.getElementById('library-card');
     const btn = document.querySelector('button');
     const newBook = document.createElement('button');
+    const main = document.getElementById('main');
 
     div.remove();
     btn.remove();
     
     // Adds button for newBook before every book card display
     newBook.setAttribute('id', 'newBook');
+    newBook.innerHTML = 'NEW BOOK';
     newBook.setAttribute('onclick', 'formSubmit()');
-
+    main.appendChild(newBook);
     
     displayPage();
 }
@@ -105,14 +107,20 @@ function displayPage() {
             myLibrary.splice(book, book + 1);
             
             
-            const newBook = document.createElement('button');
-            newBook.setAttribute('id', 'newBook');
-            // newBook.setAttribute('onclick', 'formSubmit()');
-            newBook.innerHTML = 'NEW BOOK';
+            const newBook = document.getElementById('newBook');
+            // newBook.setAttribute('id', 'newBook');
+            // // newBook.setAttribute('onclick', 'formSubmit()');
+            // newBook.innerHTML = 'NEW BOOK';
             newBook.addEventListener('click', () => {
                 formSubmit();
+                const cards = document.querySelectorAll('.card');
+
+                for (let card in cards) {
+                    card.style.display = 'none';
+                }
+                newBook.style.display = 'none';
             });
-            main_div.insertBefore(newBook);
+            main_div.appendChild(newBook);
             // newBook.addEventListener('click', () => {
             //     formSubmit();
             //     if (myLibrary.length === 0) {
@@ -227,6 +235,11 @@ function formSubmit() {
     readText.innerHTML = 'Read: ';
     readText.style.color = '#173e43';
 
+    
+
+    // deactive newBook button
+    newBook.style.display = 'none';
+
     // Heading
     formHeading.innerHTML = 'Book Form';
 
@@ -277,17 +290,25 @@ function formSubmit() {
             myList.setAttribute('onclick', 'listOfBooks()');
             myList.innerHTML = 'MY LIST';
             main_div.insertBefore(myList, main_div.firstChild);
+
+            const cards = document.querySelectorAll('.card');
+
+            for (let card in cards) {
+                card.display = 'none';
+            }
         } else {
-            const newBook = document.createElemenet('button');
-            newBook.setAttribute('id', 'newBook');
-            newBook.setAttribute('onclick', 'listOfBooks()');
-            newBook.innerHTML = 'NEW BOOK';
+            // const newBook = document.createElemenet('button');
+            // newBook.setAttribute('id', 'newBook');
+            // newBook.setAttribute('onclick', 'listOfBooks()');
+            // newBook.innerHTML = 'NEW BOOK';
+            newBook.style.display = 'block';
             mainDiv.appendChild(newBook);
         }
     })
 
     // mainDiv.removeChild(myList);
-    mainDiv.removeChild(newBook);
+    newBook.style.display = 'none';
+    // mainDiv.removeChild(newBook);
 
     // check if input is clicked
 
