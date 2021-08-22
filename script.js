@@ -44,15 +44,21 @@ function addBookToLibrary() {
 function listOfBooks() {
 
     const div = document.getElementById('library-card');
-    const btn = document.querySelector('button');
-    const newBook = document.createElement('button');
+    // const btn = document.querySelector('button');
+    const cards = document.getElementsByClassName('.card');
+    for (let card of cards) {
+        card.remove();
+    }
+    const myList = document.getElementById('myList');
+    myList.style.display = 'none';
+    const newBook = document.getElementById('newBook');
     // const main = document.getElementById('main');
     // main.style.display = 'flex';
     // main.style.flexDirection = 'row';
     // main.style.justifyContent= 'space around';
 
     div.remove();
-    btn.remove();
+    // btn.remove();
     
     // const books = document.querySelectorAll('.card');
     // if (book.length > 0) {
@@ -65,23 +71,25 @@ function listOfBooks() {
     
 
     // Adds button for newBook before every book card display
-    newBook.setAttribute('id', 'newBook');
-    newBook.innerHTML = 'NEW BOOK';
+    // newBook.setAttribute('id', 'newBook');
+    // newBook.innerHTML = 'NEW BOOK';
     
-    newBook.addEventListener('click', () => {
-        formSubmit();
-        newBook.style.display = 'none';
+    newBook.style.display = 'block';
+    // newBook.style.textAlign = 'center';
+    // newBook.addEventListener('click', () => {
+    //     formSubmit();
+    //     newBook.style.display = 'none';
         
-        // remove all book cards
-        const books = document.querySelectorAll('.card');
-        for (let book of books) {
-            book.style.display = 'none';
-        }
+    //     // remove all book cards
+    //     const books = document.querySelectorAll('.card');
+    //     for (let book of books) {
+    //         book.style.display = 'none';
+    //     }
 
-        displayPage();
-    })
-    main.appendChild(newBook);
-    
+        
+    // })
+    // document.getElementsByTagName('BODY')[0].insertBefore(newBook, main);
+    displayPage();
     
 }
 
@@ -99,7 +107,7 @@ function displayPage() {
     //main_div.setAttribute('id', 'main');
     main_div.style.width = '100%';
     main_div.style.height = '100%';
-    main_div.style.flexDirection = 'column';
+    main_div.style.flexDirection = 'row';
     // main_div.style.display = 'flex';
     // main_div.style.justifyContent = 'space-round';
     // main_div.style.alignItems = 'center';
@@ -243,7 +251,12 @@ function displayPage() {
 function formSubmit() {
 
     const formHeading = document.createElement('h2');
+    const books = document.querySelectorAll('.card');
+            for (let book of books) {
+                book.style.display = 'none';
+            }
     const myList = document.getElementById('myList');
+    myList.style.display = 'block';
     const newBook = document.getElementById('newBook');
     const formDiv = document.createElement('div');
     formDiv.setAttribute('id', 'library-card');
@@ -260,7 +273,14 @@ function formSubmit() {
     readText.innerHTML = 'Read: ';
     readText.style.color = '#173e43';
 
-    
+    // removes book cards, after form called second time
+
+    // if(typeof(books) != 'undefined' && books != null) {
+    //     for (let book of books) {
+    //         book.style.display = 'none';
+    //     }
+    // }
+            
 
     // deactive newBook button
     newBook.style.display = 'none';
@@ -307,16 +327,18 @@ function formSubmit() {
     addBook.addEventListener('click', () => {
         addBookToLibrary();
         const main_div = document.getElementById('main');
+
+        // Shows My List button once first book is added
         if (myLibrary.length > 0) {
+
             console.log("da");
             
-            const myList = document.createElement('button');
-            myList.setAttribute('id', 'myList');
-            myList.setAttribute('onclick', 'listOfBooks()');
-            myList.innerHTML = 'MY LIST';
-            main_div.insertBefore(myList, main_div.firstChild);
+            const myList = document.getElementById('myList');
+            myList.style.display = 'block';
+            document.getElementsByTagName('BODY')[0].insertBefore(myList, main_div);
 
-            const cards = document.querySelectorAll('.card');
+            
+
 
             
         } else {
