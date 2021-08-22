@@ -45,9 +45,15 @@ function listOfBooks() {
 
     const div = document.getElementById('library-card');
     const btn = document.querySelector('button');
+    const newBook = document.createElement('button');
 
     div.remove();
-    // btn.remove();
+    btn.remove();
+    
+    // Adds button for newBook before every book card display
+    newBook.setAttribute('id', 'newBook');
+    newBook.setAttribute('onclick', 'formSubmit()');
+
     
     displayPage();
 }
@@ -105,13 +111,17 @@ function displayPage() {
             newBook.innerHTML = 'NEW BOOK';
             newBook.addEventListener('click', () => {
                 formSubmit();
-                if (myLibrary.length === 0) {
-                
-                    main_div.style.flexDirection = 'row';
-                    main_div.insertBefore(newBook);
+            });
+            main_div.insertBefore(newBook);
+            // newBook.addEventListener('click', () => {
+            //     formSubmit();
+            //     if (myLibrary.length === 0) {
+            //         console.log("prazno");
+            //         main_div.style.flexDirection = 'row';
+            //         main_div.insertBefore(newBook);
     
-                } 
-            })
+            //     } 
+            // })
             
 
             
