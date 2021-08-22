@@ -46,18 +46,43 @@ function listOfBooks() {
     const div = document.getElementById('library-card');
     const btn = document.querySelector('button');
     const newBook = document.createElement('button');
-    const main = document.getElementById('main');
+    // const main = document.getElementById('main');
+    // main.style.display = 'flex';
+    // main.style.flexDirection = 'row';
+    // main.style.justifyContent= 'space around';
 
     div.remove();
     btn.remove();
     
+    // const books = document.querySelectorAll('.card');
+    // if (book.length > 0) {
+    //     for (let book of books) {
+    //         book.style.display = 'block';
+    //     }
+    // } else {
+
+    // }
+    
+
     // Adds button for newBook before every book card display
     newBook.setAttribute('id', 'newBook');
     newBook.innerHTML = 'NEW BOOK';
-    newBook.setAttribute('onclick', 'formSubmit()');
+    
+    newBook.addEventListener('click', () => {
+        formSubmit();
+        newBook.style.display = 'none';
+        
+        // remove all book cards
+        const books = document.querySelectorAll('.card');
+        for (let book of books) {
+            book.style.display = 'none';
+        }
+
+        displayPage();
+    })
     main.appendChild(newBook);
     
-    displayPage();
+    
 }
 
 
@@ -293,21 +318,20 @@ function formSubmit() {
 
             const cards = document.querySelectorAll('.card');
 
-            for (let card in cards) {
-                card.display = 'none';
-            }
+            
         } else {
             // const newBook = document.createElemenet('button');
             // newBook.setAttribute('id', 'newBook');
             // newBook.setAttribute('onclick', 'listOfBooks()');
             // newBook.innerHTML = 'NEW BOOK';
+            const newBook = document.getElementById('newBook');
             newBook.style.display = 'block';
             mainDiv.appendChild(newBook);
         }
     })
 
     // mainDiv.removeChild(myList);
-    newBook.style.display = 'none';
+    // newBook.style.display = 'none';
     // mainDiv.removeChild(newBook);
 
     // check if input is clicked
