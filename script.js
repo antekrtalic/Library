@@ -114,7 +114,8 @@ function displayPage() {
     // main_div.style.flexDirection = 'row';
 
 
-    
+    console.log(myLibrary.length);
+    console.log(library.length);    
     // Changing style for body before showing list of books
     body.appendChild(main_div);
     
@@ -253,7 +254,7 @@ function formSubmit() {
     const formHeading = document.createElement('h2');
     const books = document.querySelectorAll('.card');
             for (let book of books) {
-                book.style.display = 'none';
+                book.remove();
             }
     const myList = document.getElementById('myList');
     myList.style.display = 'block';
