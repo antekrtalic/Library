@@ -11,6 +11,7 @@ function Book(author, title, pages, read, year) {
     };
     this.year = year;
 }
+// Storing values in localStora
 
 
 // Add book to library after submission
@@ -31,7 +32,12 @@ function addBookToLibrary() {
     if (author_v == '' || title_v == '' || pages_v == '' || year_v == '') {
         console.log("Error, fullfill all input fields");
     } else {
+        // stores values into array and in localstorage
         myLibrary.push(book);
+        localStorage.setItem('books', JSON.stringify(book));
+
+        let retrievedObj = localStorage.getItem('books');
+        console.log('retrievedObj: ', JSON.parse(retrievedObj));
     }
     
     
