@@ -145,6 +145,11 @@ function displayPage() {
             // newBook.setAttribute('id', 'newBook');
             // // newBook.setAttribute('onclick', 'formSubmit()');
             // newBook.innerHTML = 'NEW BOOK';
+
+            if (myLibrary.length === 0) {
+                console.log('Prazna lista');
+            }
+
             newBook.addEventListener('click', () => {
                 formSubmit();
                 const cards = document.querySelectorAll('.card');
@@ -154,7 +159,7 @@ function displayPage() {
                 }
                 newBook.style.display = 'none';
             });
-            main_div.appendChild(newBook);
+            document.getElementsByTagName('BODY')[0].insertBefore(newBook, main_div);
             // newBook.addEventListener('click', () => {
             //     formSubmit();
             //     if (myLibrary.length === 0) {
