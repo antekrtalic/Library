@@ -37,6 +37,8 @@ function addBookToLibrary() {
         localStorage.setItem('books', JSON.stringify(book));
 
         let retrievedObj = localStorage.getItem('books');
+        
+        
         console.log('retrievedObj: ', JSON.parse(retrievedObj));
     }
     
