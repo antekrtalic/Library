@@ -1,13 +1,15 @@
-let myLibrary;
+let myLibrary = [];
 let retrievedObj;
 
 if (window.localStorage.length !== 0) {
     retrievedObj = localStorage.getItem('books');
+    console.log(retrievedObj);
+
     myLibrary = JSON.parse(retrievedObj);
 
-    for (let obj in myLibrary) {
-        myLibrary[obj].toggleClass = () => {
-            this.read = !this.read;
+    for (let key in myLibrary) {
+        myLibrary[key].toggleClass = () => {
+            myLibrary[key].read = !myLibrary[key].read;
         }
     }
 }
@@ -165,8 +167,12 @@ function displayPage() {
         deleteButton.addEventListener('click', () => {
             deleteButton.parentElement.remove();
             myLibrary.splice(book, book + 1);
+            let storedNames = JSON.parse(localStorage.getItem('books'));
+
+            storedNames = storedNames.slice(book, 1);
+            console.log(storedNames);
             
-            
+            localStorage.setItem('books', storedNames);
             const newBook = document.getElementById('newBook');
             // newBook.setAttribute('id', 'newBook');
             // // newBook.setAttribute('onclick', 'formSubmit()');
