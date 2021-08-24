@@ -1,4 +1,17 @@
-const myLibrary = [];
+let myLibrary;
+let retrievedObj;
+
+if (window.localStorage.length !== 0) {
+    retrievedObj = localStorage.getItem('books');
+    myLibrary = JSON.parse(retrievedObj);
+
+    for (let obj in myLibrary) {
+        myLibrary[obj].toggleClass = () => {
+            this.read = !this.read;
+        }
+    }
+}
+
 
 
 function Book(author, title, pages, read, year) {
@@ -25,6 +38,10 @@ function addBookToLibrary() {
     const deleteForm = document.getElementById('book-form');
     
     const book = new Book(author_v, title_v, pages_v, read_v, year_v);
+
+    // check after refresh or reopening window if there are some data in localStorage
+
+    
     
     // checks if input is clicked
 
@@ -34,13 +51,14 @@ function addBookToLibrary() {
     } else {
         // stores values into array and in localstorage
         myLibrary.push(book);
-        localStorage.setItem('books', JSON.stringify(book));
-
-        let retrievedObj = localStorage.getItem('books');
+        
+        localStorage.setItem('books', JSON.stringify(myLibrary));
+            
         
         
-        console.log('retrievedObj: ', JSON.parse(retrievedObj));
+        
     }
+    
     
     
     deleteForm.reset();
@@ -363,6 +381,8 @@ function formSubmit() {
             const newBook = document.getElementById('newBook');
             newBook.style.display = 'block';
             mainDiv.appendChild(newBook);
+
+            
         }
     })
 
