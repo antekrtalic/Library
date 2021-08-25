@@ -1,22 +1,28 @@
 let myLibrary = [];
 let retrievedObj;
 
-if (window.localStorage.length !== 0) {
-    retrievedObj = localStorage.getItem('books');
-    console.log(retrievedObj);
+// Sets myLibrary to start with anything that is saved in localStorage from before
 
+if (window.localStorage.length !== 0) {
+
+    retrievedObj = localStorage.getItem('books');
     myLibrary = JSON.parse(retrievedObj);
 
     for (let key in myLibrary) {
+
         myLibrary[key].toggleClass = () => {
+
             myLibrary[key].read = !myLibrary[key].read;
+
         }
+
     }
 }
 
 
 
 function Book(author, title, pages, read, year) {
+
     this.author = author;
     this.title = title;
     this.pages = pages;
@@ -25,6 +31,7 @@ function Book(author, title, pages, read, year) {
         this.read = !this.read;
     };
     this.year = year;
+
 }
 // Creates Form input
 
@@ -52,16 +59,7 @@ function formSubmit() {
     const readText = document.createElement('p');
     readText.innerHTML = 'Read: ';
     readText.style.color = '#173e43';
-
-    // removes book cards, after form called second time
-
-    // if(typeof(books) != 'undefined' && books != null) {
-    //     for (let book of books) {
-    //         book.style.display = 'none';
-    //     }
-    // }
             
-
     // deactive newBook button
     newBook.style.display = 'none';
 
@@ -103,40 +101,30 @@ function formSubmit() {
     addBook.setAttribute('id', 'addButton');
     addBook.setAttribute('name', 'addButton');
     addBook.setAttribute('value', 'ADD');
+
     // addBook.onclick = addBookToLibrary;
     addBook.addEventListener('click', () => {
+
         addBookToLibrary();
         const main_div = document.getElementById('main');
 
         // Shows My List button once first book is added
         if (myLibrary.length > 0) {
-
-            console.log("da");
             
             const myList = document.getElementById('myList');
             myList.style.display = 'block';
             document.getElementsByTagName('BODY')[0].insertBefore(myList, main_div);
 
-            
-
-
-            
         } else {
-            // const newBook = document.createElemenet('button');
-            // newBook.setAttribute('id', 'newBook');
-            // newBook.setAttribute('onclick', 'listOfBooks()');
-            // newBook.innerHTML = 'NEW BOOK';
+            
             const newBook = document.getElementById('newBook');
             newBook.style.display = 'block';
             mainDiv.appendChild(newBook);
-
             
         }
     })
 
-    // mainDiv.removeChild(myList);
-    // newBook.style.display = 'none';
-    // mainDiv.removeChild(newBook);
+   
 
     // check if input is clicked
 
@@ -164,11 +152,7 @@ function addBookToLibrary() {
     const deleteForm = document.getElementById('book-form');
     
     const book = new Book(author_v, title_v, pages_v, read_v, year_v);
-
-    // check after refresh or reopening window if there are some data in localStorage
-
-    
-    
+ 
     // checks if input is clicked
 
 
@@ -190,51 +174,17 @@ function addBookToLibrary() {
 function listOfBooks() {
 
     const div = document.getElementById('library-card');
-    // const btn = document.querySelector('button');
     const cards = document.getElementsByClassName('.card');
+    const myList = document.getElementById('myList');
+    const newBook = document.getElementById('newBook');
+
     for (let card of cards) {
         card.remove();
     }
-    const myList = document.getElementById('myList');
+
     myList.style.display = 'none';
-    const newBook = document.getElementById('newBook');
-    // const main = document.getElementById('main');
-    // main.style.display = 'flex';
-    // main.style.flexDirection = 'row';
-    // main.style.justifyContent= 'space around';
-
     div.remove();
-    // btn.remove();
-    
-    // const books = document.querySelectorAll('.card');
-    // if (book.length > 0) {
-    //     for (let book of books) {
-    //         book.style.display = 'block';
-    //     }
-    // } else {
-
-    // }
-    
-
-    // Adds button for newBook before every book card display
-    // newBook.setAttribute('id', 'newBook');
-    // newBook.innerHTML = 'NEW BOOK';
-    
     newBook.style.display = 'block';
-    // newBook.style.textAlign = 'center';
-    // newBook.addEventListener('click', () => {
-    //     formSubmit();
-    //     newBook.style.display = 'none';
-        
-    //     // remove all book cards
-    //     const books = document.querySelectorAll('.card');
-    //     for (let book of books) {
-    //         book.style.display = 'none';
-    //     }
-
-        
-    // })
-    // document.getElementsByTagName('BODY')[0].insertBefore(newBook, main);
     displayPage();
     
 }
@@ -247,21 +197,13 @@ function displayPage() {
 
     const library = myLibrary;
     const body = document.body;
-    //const main_div = document.createElement('div');
     const main_div = document.querySelector('#main');
+
     // main div 
-    //main_div.setAttribute('id', 'main');
     main_div.style.width = '100%';
     main_div.style.height = '100%';
     main_div.style.flexDirection = 'row';
-    // main_div.style.display = 'flex';
-    // main_div.style.justifyContent = 'space-round';
-    // main_div.style.alignItems = 'center';
-    // main_div.style.flexDirection = 'row';
-
-
-    console.log(myLibrary.length);
-    console.log(library.length);    
+     
     // Changing style for body before showing list of books
     body.appendChild(main_div);
     
@@ -271,113 +213,70 @@ function displayPage() {
 
         const div = document.createElement('div');
         div.setAttribute('class', `card`);
-        // div.style.width = '300px';
-        // div.style.height = '500px';
-        // div.style.backgroundColor = '#383836';
-        // div.style.border = '1px solid black';
-        // div.style.textAlign = 'center';
-        
+    
         // Delete button for each book card
         const deleteButton = document.createElement('button');
-
         deleteButton.setAttribute('class', 'delete');
-        // deleteButton.setAttribute('onclick', 'return this.parentElement.remove()');
         deleteButton.addEventListener('click', () => {
+
             deleteButton.parentElement.remove();
             myLibrary.splice(book, book + 1);
-            // let storedNames = JSON.parse(localStorage.getItem('books'));
-
-            // storedNames = storedNames.slice(book, 1);
-            // console.log(storedNames);
-            
             localStorage.setItem('books', JSON.stringify(myLibrary));
-            const newBook = document.getElementById('newBook');
-            // newBook.setAttribute('id', 'newBook');
-            // // newBook.setAttribute('onclick', 'formSubmit()');
-            // newBook.innerHTML = 'NEW BOOK';
-
-            if (myLibrary.length === 0) {
-                console.log('Prazna lista');
-                
-
-            }
-
-            // newBook.addEventListener('click', () => {
-            //     formSubmit();
-            //     const cards = document.querySelectorAll('.card');
-
-            //     for (let card in cards) {
-            //         card.style.display = 'none';
-            //     }
-            //     newBook.style.display = 'none';
-            // });
-            // document.getElementsByTagName('BODY')[0].insertBefore(newBook, main_div);
-
-            
-            // newBook.addEventListener('click', () => {
-            //     formSubmit();
-            //     if (myLibrary.length === 0) {
-            //         console.log("prazno");
-            //         main_div.style.flexDirection = 'row';
-            //         main_div.insertBefore(newBook);
-    
-            //     } 
-            // })
-            
-
-            
 
         });
-
         
         deleteButton.innerHTML = 'DELETE';
-        // deleteButton.style.backgroundColor = 'red';
-        // deleteButton.style.marginTop = '20px'
 
         for (let key in library[book]) {
 
             const p = document.createElement('p');
-            // p.style.marginTop = '5px';
-            // p.style.fontSize = '1.7rem';
-            // p.style.fontFamily = '"Times New Roman", Times, serif';
-            
 
             if (key === 'author') {
                 
                 p.innerHTML = 'Author: ';
+
             } else if (key === 'title') {
                 
                 p.innerHTML = 'Title: ';
+
             } else if (key === 'pages') {
                 
                 p.innerHTML = 'Pages: ';
+
             } else if (key === 'read') {
 
                 const readButton = document.createElement('button');
                 
                 if (library[book][key] === true) {
+
                     readButton.setAttribute('class', 'readCheck readButton');
-                    
                     readButton.innerHTML = 'Read';
+
                 } else {
+
                     readButton.setAttribute('class', 'readCheck unreadButton');
                     readButton.innerHTML = 'Unread';
+
                 }
-                
 
                 // changing style of readButton depending on status
                 readButton.onclick = () => {
+
                     library[book].toggleClass();
                     const read = library[book].read;
+
                     if (read === true) {
+
                         readButton.setAttribute('class', 'readCheck readButton');
                         readButton.innerHTML = 'Read'
+
                     } else {
+
                         readButton.setAttribute('class', 'readCheck unreadButton');
                         readButton.innerHTML = 'Unread';
+
                     }
                 }
-                
                 
                 div.appendChild(readButton);
 
@@ -394,7 +293,9 @@ function displayPage() {
             }
 
             if (key != 'toggleClass') {
+
                 p.innerHTML += library[book][key];
+
             }
             
             div.appendChild(p);
@@ -403,7 +304,6 @@ function displayPage() {
 
         div.appendChild(deleteButton);
         main_div.appendChild(div);
-        console.log(library[book]);
     }
 }
 
