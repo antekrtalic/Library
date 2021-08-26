@@ -71,12 +71,14 @@ function formSubmit() {
     author.setAttribute('id', 'author');
     author.setAttribute('name', 'author');
     author.setAttribute('placeholder', 'Author');
+    author.required = true;
 
     // input title
     title.setAttribute('type', 'text');
     title.setAttribute('id', 'title');
     title.setAttribute('name', 'title');
     title.setAttribute('placeholder', 'Title');
+    title.required = true;
 
     // input read
     read.setAttribute('type', 'checkbox');
@@ -85,16 +87,18 @@ function formSubmit() {
     
 
     // input pages
-    pages.setAttribute('type', 'text');
+    pages.setAttribute('type', 'number');
     pages.setAttribute('id', 'pages');
     pages.setAttribute('name', 'pages');
     pages.setAttribute('placeholder', 'Pages');
+    pages.setAttribute('required', '');
 
     //input year
-    year.setAttribute('type', 'text');
+    year.setAttribute('type', 'number');
     year.setAttribute('id', 'year');
     year.setAttribute('name', 'year');
     year.setAttribute('placeholder', 'Year');
+    year.required = true;
 
     // addBook button
     addBook.setAttribute('type', 'button');
@@ -106,22 +110,22 @@ function formSubmit() {
     addBook.addEventListener('click', () => {
 
         addBookToLibrary();
-        const main_div = document.getElementById('main');
+        // const main_div = document.getElementById('main');
 
-        // Shows My List button once first book is added
-        if (myLibrary.length > 0) {
+        // // Shows My List button once first book is added
+        // if (myLibrary.length > 0) {
             
-            const myList = document.getElementById('myList');
-            myList.style.display = 'block';
-            document.getElementsByTagName('BODY')[0].insertBefore(myList, main_div);
+        //     const myList = document.getElementById('myList');
+        //     myList.style.display = 'block';
+        //     document.getElementsByTagName('BODY')[0].insertBefore(myList, main_div);
 
-        } else {
+        // } else {
             
-            const newBook = document.getElementById('newBook');
-            newBook.style.display = 'block';
-            mainDiv.appendChild(newBook);
+        //     const newBook = document.getElementById('newBook');
+        //     newBook.style.display = 'block';
+        //     mainDiv.appendChild(newBook);
             
-        }
+        // }
     })
 
    
@@ -152,15 +156,33 @@ function addBookToLibrary() {
     const deleteForm = document.getElementById('book-form');
     
     const book = new Book(author_v, title_v, pages_v, read_v, year_v);
- 
+    
     // checks if input is clicked
 
 
     if (author_v == '' || title_v == '' || pages_v == '' || year_v == '') {
+       
         console.log("Error, fullfill all input fields");
+       
     } else {
         // stores values into array and in localstorage
         myLibrary.push(book);
+        
+        // Shows My List button once first book is added
+        if (myLibrary.length > 0) {
+            
+            const main_div = document.getElementById('main');
+            const myList = document.getElementById('myList');
+            myList.style.display = 'block';
+            document.getElementsByTagName('BODY')[0].insertBefore(myList, main_div);
+
+        } else {
+            
+            const newBook = document.getElementById('newBook');
+            newBook.style.display = 'block';
+            mainDiv.appendChild(newBook);
+            
+        }
         
         localStorage.setItem('books', JSON.stringify(myLibrary));  
     }
