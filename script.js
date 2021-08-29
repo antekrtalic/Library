@@ -9,14 +9,15 @@ if (window.localStorage.length !== 0) {
     myLibrary = JSON.parse(retrievedObj);
 
     for (let key in myLibrary) {
-
+        
         myLibrary[key].toggleClass = () => {
 
             myLibrary[key].read = !myLibrary[key].read;
-
+            
         }
 
     }
+    displayPage();
 }
 
 
@@ -285,6 +286,8 @@ function displayPage() {
                 readButton.onclick = () => {
 
                     library[book].toggleClass();
+                    // try to update each object in localStorage when read button pressed
+                    localStorage.setItem('books', JSON.stringify(myLibrary));
                     const read = library[book].read;
 
                     if (read === true) {
